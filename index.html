@@ -23,13 +23,13 @@ const  result= await dialog.showOpenDialog(
 );
    if (!result.canceled && result.filePaths.length > 0) {
         const filePath = result.filePaths[0];
-        ipcRenderer.send('video.submit', filePath);
+        ipcRenderer.send('video:submit', filePath);
         console.log("Selected File:", filePath);
     }
     });
     ipcRenderer.on("video:durationAnalyzed", (event, duration) => {
         document.getElementById("results").textContent = 
-        `Video Duration: ${duration} section`;
+        `Video Duration: ${duration} seconds`;
     });
     ipcRenderer.on("video:error", (event, error) => {
         document.getElementById("results").textContent = 
